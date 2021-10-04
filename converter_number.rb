@@ -11,8 +11,6 @@ class Converter
     alpha_roman.reduce('') do |ac, number|
       key, value = number
       occurence, num = num.divmod(key)
-      puts "Here my accumulator #{ac}"
-      puts "here my number #{number}"
       ac + value*occurence
     end
   end

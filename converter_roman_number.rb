@@ -1,21 +1,24 @@
 class Converter
-
-
   def converter_to_roman(num)
     alpha.reduce('') do |ac, number|
       key, value = number
       occurence, num = num.divmod(key)
-      ac + value*occurence
+      ac + value * occurence
     end
   end
 
   private
+
   def alpha
     {
-      1000 => 'M',
+      1000000 => 'M*',
+      500000 => 'D*',
+      100000 => 'C*',
+      50000 => 'L*',
+      10000 => 'X*', 5000 => 'V*', 1000 => 'M',
       900 => 'CM', 500 => 'D', 400 => 'CD', 100 => 'C',
-      90 => 'XC', 50  => 'L', 40  => 'XL', 10  => 'X',
-      9 => 'IX', 5   => 'V', 4   => 'IV', 1   => 'I'
+      90 => 'XC', 50 => 'L', 40 => 'XL', 10 => 'X',
+      9 => 'IX', 5 => 'V', 4 => 'IV', 1 => 'I'
     }
   end
 end
@@ -25,8 +28,9 @@ c = Converter.new
 d = Converter.new
 
 
-puts a.converter_to_roman(1000)
-puts b.converter_to_roman(789)
+
+puts c.converter_to_roman(1000000)
+puts a.converter_to_roman(56789)
 
 
 
