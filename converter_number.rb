@@ -26,9 +26,7 @@ d = Converter.new
 
 puts a.converter_to_roman(1000)
 puts b.converter_to_roman(789)
-#puts b.romanize(100)
-#puts c.romanize(22)
-#puts d.romanize(678)
+
 
 
 
