@@ -35,6 +35,6 @@ a = Converter.new
 b = Converter.new
 
 
-puts b.to_arabic('XXV')
+puts b.roman_to_arabic('XXV')
 
 
