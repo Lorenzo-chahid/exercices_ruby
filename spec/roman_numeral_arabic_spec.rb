@@ -1,10 +1,10 @@
-# converter_number.rb
+# roman_numeral_arabic.rb
 
-require './converter_number'
+require './roman_numeral_arabic'
 
 RSpec.describe RomanNumeral do
   describe '#arabic_to_roman' do
-    context "when a pass a good value" do
+    context 'when pass good value' do
       let(:digit_arabic) { RomanNumeral.new('MCMXCIX', 20) }
 
       it 'return XX' do
@@ -16,15 +16,16 @@ RSpec.describe RomanNumeral do
       end
     end
 
-    context "when a pass a bad value" do
+    context 'when pass bad value' do
       let(:digit_arabic) { RomanNumeral.new('IIIVMLK', 1000000000000) }
+      let(:digit_arabic_2) { RomanNumeral.new('GGG', 100)}
 
-      it 'return XX' do
+      it 'return error' do
         expect(digit_arabic.arabic_to_roman).to eq('error')
       end
 
-      it 'return error' do
-        expect(digit_arabic.roman_to_arabic).to eq("Please enter a valid numeral number")
+      it 'return a demand for valid roman numeral' do
+        expect(digit_arabic_2.roman_to_arabic).to eq('Please enter a valid numeral number')
       end
     end
 

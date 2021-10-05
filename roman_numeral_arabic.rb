@@ -7,7 +7,7 @@ class RomanNumeral
   end
 
   def arabic_to_roman
-    return "error" if @num > 4000
+    return 'error' if @num > 4000
 
     alpha.reduce('') do |ac, number|
       key, value = number
@@ -23,7 +23,6 @@ class RomanNumeral
       while @str.start_with?(roman)
         result += alpha.invert[roman]
         @str = @str.slice(roman.length, @str.length)
-
       end
     end
     if @str.length > 0
