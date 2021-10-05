@@ -1,28 +1,25 @@
 class Converter
-
-  def converter_to_arabic(roman_numeral)
-    test = roman_numeral.split("")
-    alpha.reduce(0) do |ac, number|
-      # ac = 0
-      # number = [ 'X','10]
-      key, value = number
-      # key = 'X'
-      # value = 10
-      test.each do |el|
-        if el == key
-          ac + value
-        end
+  def roman_to_arabic(str)
+    # init result
+    result = 0
+    # for each value in my hash
+    alpha.values.each do |roman|
+      # while str begin with my value hash (is true)
+      while str.start_with?(roman)
+        puts "true"
+        str = "wavier"
       end
-      ac
     end
+    # return my result
+    result
   end
 
   private
 
   def alpha
     {
-      'X' => 10,
-      'IX' => 9, 'V' => 5, 'IV' => 4, 'I' => 1
+      10 => 'X',
+      9 => 'IX', 5 => 'V', 4 => 'IV', 1 => 'I'
     }
   end
 
@@ -32,6 +29,9 @@ end
 
 
 a = Converter.new
+b = Converter.new
 
-puts a.converter_to_arabic('XX')
+
+puts b.roman_to_arabic('XXV')
+
 
