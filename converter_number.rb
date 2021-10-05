@@ -1,19 +1,34 @@
-class Converter
-  def roman_to_arabic(str)
-    # init result
+class RomanNumeral
+  attr_accessor :str, :num
+
+  def initialize(str, num)
+    @str = str
+    @num = num
+  end
+
+  def arabic_to_roman
+    return "error" if @num > 4000
+
+    alpha.reduce('') do |ac, number|
+      key, value = number
+      occurence, @num = @num.divmod(key)
+      ac + value * occurence
+
+    end
+  end
+
+  def roman_to_arabic
     result = 0
-    # for each value in my hash
     alpha.values.each do |roman|
-      # while str begin with my value hash (is true)
-      while str.start_with?(roman)
-        # add key (like a value) to
+      while @str.start_with?(roman)
         result += alpha.invert[roman]
-        # each iteration I slice (cut) my word
-        str = str.slice(roman.length, str.length)
-        # str with value "XXV" after that equal "XV" .. "V"... "" and "".start_with? = false
+        @str = @str.slice(roman.length, @str.length)
+
       end
     end
-    # return my result
+    if @str.length > 0
+      result = 'Please enter a valid numeral number'
+    end
     result
   end
 
@@ -21,20 +36,15 @@ class Converter
 
   def alpha
     {
-      10 => 'X',
-      9 => 'IX', 5 => 'V', 4 => 'IV', 1 => 'I'
+      1000 => 'M',
+      900 => 'CM', 500 => 'D', 400 => 'CD', 100 => 'C',
+      90 => 'XC', 50 => 'L', 40 => 'XL', 10 => 'X',
+      9 => 'IX', 5 => 'VXX', 4 => 'IV', 1 => 'I'
     }
   end
 
 end
 
 
-
-
-a = Converter.new
-b = Converter.new
-
-
-puts b.roman_to_arabic('XXV')
 
 
