@@ -6,8 +6,11 @@ class Converter
     alpha.values.each do |roman|
       # while str begin with my value hash (is true)
       while str.start_with?(roman)
-        puts "true"
-        str = "wavier"
+        # add key (like a value) to
+        result += alpha.invert[roman]
+        # each iteration I slice (cut) my word
+        str = str.slice(roman.length, str.length)
+        # str with value "XXV" after that equal "XV" .. "V"... "" and "".start_with? = false
       end
     end
     # return my result
@@ -32,6 +35,6 @@ a = Converter.new
 b = Converter.new
 
 
-puts b.roman_to_arabic('XXV')
+puts b.to_arabic('XXV')
 
 
