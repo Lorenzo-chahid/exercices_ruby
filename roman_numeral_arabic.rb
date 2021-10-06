@@ -1,20 +1,8 @@
 class RomanNumeral
-  attr_accessor :str, :num
+  attr_accessor :str
 
-  def initialize(str, num)
+  def initialize(str)
     @str = str
-    @num = num
-  end
-
-  def arabic_to_roman
-    return 'error' if @num > 4000
-
-    alpha.reduce('') do |ac, number|
-      key, value = number
-      occurence, @num = @num.divmod(key)
-      ac + value * occurence
-
-    end
   end
 
   def roman_to_arabic
@@ -26,7 +14,7 @@ class RomanNumeral
       end
     end
     if @str.length > 0
-      result = 'Please enter a valid numeral number'
+      result = 'Please enter a valid roman numeral'
     end
     result
   end
@@ -41,9 +29,5 @@ class RomanNumeral
       9 => 'IX', 5 => 'VXX', 4 => 'IV', 1 => 'I'
     }
   end
-
 end
-
-
-
 
