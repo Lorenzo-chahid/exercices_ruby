@@ -3,31 +3,31 @@
 require './roman_numeral_arabic'
 
 RSpec.describe RomanNumeral do
-  describe '#arabic_to_roman' do
+  describe '#roman_to_arabic' do
     context 'when pass good value' do
-      let(:digit_arabic) { RomanNumeral.new('MCMXCIX', 20) }
+      let(:digit_arabic) { RomanNumeral.new('MCMXCIX') }
 
-      it 'return XX' do
-        expect(digit_arabic.arabic_to_roman).to eq('XX')
-      end
-
-      it 'return error' do
+      it 'return num' do
         expect(digit_arabic.roman_to_arabic).to eq(1999)
       end
     end
 
-    context 'when pass bad value' do
-      let(:digit_arabic) { RomanNumeral.new('IIIVMLK', 1000000000000) }
-      let(:digit_arabic_2) { RomanNumeral.new('GGG', 100)}
 
-      it 'return error' do
-        expect(digit_arabic.arabic_to_roman).to eq('error')
-      end
+    let(:digit_arabic) { RomanNumeral.new('MCMXCIX') }
 
-      it 'return a demand for valid roman numeral' do
-        expect(digit_arabic_2.roman_to_arabic).to eq('Please enter a valid numeral number')
-      end
+    it 'return original str' do
+      digit_arabic.roman_to_arabic
+
+      expect(digit_arabic.str).to eq('MCMXCIX')
     end
 
+    context 'when pass bad value' do
+      let(:digit_arabic) { RomanNumeral.new('IIIVMLK') }
+      let(:digit_arabic_2) { RomanNumeral.new('GGG') }
+
+      it 'return a demand for valid roman numeral' do
+        expect(digit_arabic_2.roman_to_arabic).to eq('Please enter a valid roman numeral')
+      end
+    end
   end
 end

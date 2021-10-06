@@ -1,22 +1,30 @@
 class RomanNumeral
-  attr_accessor :str
+  attr_accessor :str, :result
 
   def initialize(str)
+    @result = 0
     @str = str
   end
 
+  def str
+    alpha.reduce('') do |ac, number|
+      key, value = number
+      occurence, @result = @result.divmod(key)
+      ac + value * occurence
+    end
+  end
+
   def roman_to_arabic
-    result = 0
     alpha.values.each do |roman|
       while @str.start_with?(roman)
-        result += alpha.invert[roman]
+        @result += alpha.invert[roman]
         @str = @str.slice(roman.length, @str.length)
       end
     end
     if @str.length > 0
-      result = 'Please enter a valid roman numeral'
+      @result = 'Please enter a valid roman numeral'
     end
-    result
+    @result
   end
 
   private
@@ -31,3 +39,5 @@ class RomanNumeral
   end
 end
 
+a = RomanNumeral.new("XXV")
+puts a.str
