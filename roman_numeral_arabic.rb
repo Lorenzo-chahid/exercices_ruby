@@ -6,23 +6,20 @@ class RomanNumeral
     @str = str
   end
 
-  def str
-    alpha.reduce('') do |ac, number|
-      key, value = number
-      occurence, @result = @result.divmod(key)
-      ac + value * occurence
-    end
-  end
 
-  def roman_to_arabic
+
+  def to_i
+    return @result if @result > 0
+
+    str = @str
     alpha.values.each do |roman|
-      while @str.start_with?(roman)
+      while str.start_with?(roman)
         @result += alpha.invert[roman]
-        @str = @str.slice(roman.length, @str.length)
+        str = str.slice(roman.length, str.length)
       end
     end
-    if @str.length > 0
-      @result = 'Please enter a valid roman numeral'
+    if str.length > 0
+      @result = 0
     end
     @result
   end
@@ -39,5 +36,6 @@ class RomanNumeral
   end
 end
 
-a = RomanNumeral.new("XXV")
+a = RomanNumeral.new("MCMXCI")
 puts a.str
+puts a.to_i
