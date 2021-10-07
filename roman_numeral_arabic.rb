@@ -1,29 +1,28 @@
-require "byebug"
+require 'byebug'
 
 class RomanNumeral
-  attr_accessor :str, :result
+  attr_accessor :to_s
 
   def initialize(str)
     @result = 0
-    @str = str
-  end
-
-  def result
-    @result ||= to_i
+    @to_s = str
   end
 
   def to_i
-    return @result if @result.positive?
+    @to_i ||= begin
+      @result = 0
+      return @result if @result.positive?
 
-    str = @str
-    alpha.each do |roman|
-      while str.start_with?(roman[1])
-        @result += roman[0]
-        str = str.slice(roman[1].length, str.length)
+      str = @to_s
+      alpha.each do |roman|
+        while str.start_with?(roman[1])
+          @result += roman[0]
+          str = str.slice(roman[1].length, str.length)
+        end
       end
+      @result = 0 unless str.empty?
+      @result
     end
-    @result = 0 unless str.empty?
-    @result
   end
 
   private
