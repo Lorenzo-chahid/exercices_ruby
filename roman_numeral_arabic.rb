@@ -1,3 +1,5 @@
+require "byebug"
+
 class RomanNumeral
   attr_accessor :str, :result
 
@@ -6,11 +8,12 @@ class RomanNumeral
     @str = str
   end
 
-  def data
+  def result
     @result ||= to_i
   end
 
   def to_i
+    byebug
     return @result if @result > 0
 
     str = @str
@@ -20,9 +23,7 @@ class RomanNumeral
         str = str.slice(roman[1].length, str.length)
       end
     end
-    if str.length > 0
-      @result = 0
-    end
+    @result = 0 unless str.empty?
     @result
   end
 
@@ -33,11 +34,15 @@ class RomanNumeral
       1000 => 'M',
       900 => 'CM', 500 => 'D', 400 => 'CD', 100 => 'C',
       90 => 'XC', 50 => 'L', 40 => 'XL', 10 => 'X',
-      9 => 'IX', 5 => 'VXX', 4 => 'IV', 1 => 'I'
+      9 => 'IX', 5 => 'V', 4 => 'IV', 1 => 'I'
     }
   end
 end
 
 a = RomanNumeral.new("MCMXCI")
 puts a.str
-puts a.data
+puts a.to_i
+puts a.result
+puts a.result
+puts a.result
+puts a.result
