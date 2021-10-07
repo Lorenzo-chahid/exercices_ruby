@@ -13,8 +13,7 @@ class RomanNumeral
   end
 
   def to_i
-    byebug
-    return @result if @result > 0
+    return @result if @result.positive?
 
     str = @str
     alpha.each do |roman|
@@ -38,11 +37,3 @@ class RomanNumeral
     }
   end
 end
-
-a = RomanNumeral.new("MCMXCI")
-puts a.str
-puts a.to_i
-puts a.result
-puts a.result
-puts a.result
-puts a.result
