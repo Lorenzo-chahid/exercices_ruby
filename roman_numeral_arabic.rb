@@ -6,16 +6,18 @@ class RomanNumeral
     @str = str
   end
 
-
+  def data
+    @result ||= to_i
+  end
 
   def to_i
     return @result if @result > 0
 
     str = @str
-    alpha.values.each do |roman|
-      while str.start_with?(roman)
-        @result += alpha.invert[roman]
-        str = str.slice(roman.length, str.length)
+    alpha.each do |roman|
+      while str.start_with?(roman[1])
+        @result += roman[0]
+        str = str.slice(roman[1].length, str.length)
       end
     end
     if str.length > 0
@@ -38,4 +40,4 @@ end
 
 a = RomanNumeral.new("MCMXCI")
 puts a.str
-puts a.to_i
+puts a.data
