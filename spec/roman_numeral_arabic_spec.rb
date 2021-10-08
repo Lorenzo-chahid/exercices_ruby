@@ -29,13 +29,11 @@ RSpec.describe RomanNumeral do
     end
 
     context 'when pass bad value' do
-      before do
-        @item = RomanNumeral.new('GGG')
-      end
 
-      it 'return a demand for valid roman numeral' do
-        allow(@item).to receive(:to_i).and_call_original
-        expect(@item.to_i).to eq(0)
+      let(:item) { RomanNumeral.new("GGG") }
+
+      it 'return 0' do
+        expect(item.to_i).to eq(0)
       end
     end
   end

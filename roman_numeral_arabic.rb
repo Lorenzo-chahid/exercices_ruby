@@ -1,31 +1,33 @@
 require 'byebug'
 
-class RomanNumeral
-  attr_accessor :to_s
-
+class RomanNumeral < Numeric
   def initialize(str)
-    @result = 0
-    @to_s = str
+    @str = str
+
+    calculate_arabic
+  end
+
+  def to_s
+    @str
   end
 
   def to_i
-    @to_i ||= begin
-      @result = 0
-      return @result if @result.positive?
-
-      str = @to_s
-      alpha.each do |roman|
-        while str.start_with?(roman[1])
-          @result += roman[0]
-          str = str.slice(roman[1].length, str.length)
-        end
-      end
-      @result = 0 unless str.empty?
-      @result
-    end
+    @result
   end
 
   private
+
+  def calculate_arabic
+    @result = 0
+
+    str = @str
+    alpha.each_pair do |arabic, roman|
+      while str.start_with?(roman)
+        @result += arabic
+        str = str.slice(roman.length, str.length)
+      end
+    end
+  end
 
   def alpha
     {
